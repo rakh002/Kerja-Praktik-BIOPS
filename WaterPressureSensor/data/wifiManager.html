@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pengaturan Konektivitas</title>
+
+    <!-- My Style -->
+    <link rel="stylesheet" type="text/css" href="wifi_style.css" />
+  </head>
+
+  <body>
+    <header></header>
+    <!-- Navbar start -->
+    <nav class="navbar">
+      <div class="navbar-extra">
+        <div class="hamburger-menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+
+      <a href="#" class="navbar-logo">ENCO<span>MOTION</span></a>
+
+      <div class="navbar-nav">
+        <a href="/">Beranda</a>
+        <a href="/timeSync.html">Sinkronisasi<span>Waktu</span></a>
+        <a href="#help">Bantuan</a>
+      </div>
+
+      <div class="navbar-rtc">
+        <div class="dateBar">
+          <div id="hari">%HARI%</div>
+          <div id="tanggal">%TANGGAL%</div>
+        </div>
+        <div class="clockBar">
+          <span id="jam">%JAM%</span>
+        </div>
+      </div>
+    </nav>
+    <!-- Navbar end -->
+
+    <!-- Hero Section start -->
+    <section class="hero" id="home">
+      <main class="content">
+        <h1>ENCO<span>MOTION</span></h1>
+        <p>Pengaturan Konektivitas</p>
+        <div class="network-container">
+          <h3>Jaringan Terdeteksi</h3>
+          <div class="wifi_list">
+            <table id="wifi_list"></table>
+          </div>
+          <div>
+            <abbr title="Tunggu 5 detik untuk melakukan scan ulang">
+              <button id="scan-button">Scan Network</button>
+            </abbr>
+            <div class="card-grid">
+              <div class="card">
+                <form action="/setupWiFi" method="POST">
+                  <label for="SSID">SSID</label>
+                  <input
+                    type="text"
+                    id="ssid"
+                    name="ssid"
+                    placeholder="Your SSID"
+                  />
+                  <label for="password">Password</label>
+                  <input
+                    type="password"
+                    id="pass"
+                    name="pass"
+                    placeholder="Your Password"
+                  />
+                  <label class="label-checkbox">
+                    <input
+                      aria-label="an appropriate label"
+                      type="checkbox"
+                      onclick="f()"
+                    />
+                    <span class="show">Show Password </span></label
+                  ><br />
+                  <input type="submit" value="Submit" />
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </section>
+    <!-- Hero Section end -->
+
+    <!-- My Javascript -->
+    <script src="/script.js"></script>
+    <script src="/ajax.js"></script>
+    <script src="/wifi_js.js"></script>
+  </body>
+</html>

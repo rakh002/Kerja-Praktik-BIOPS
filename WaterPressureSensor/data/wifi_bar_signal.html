@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>WiFi Scanner</title>
+  <link rel="stylesheet" type="text/css" href="wifi_style copy.css">
+  </head>
+</head>
+<body>
+  <div class="topnav">
+    <h1>Pengaturan Konektivitas</h1>
+  </div>
+  <div class="hero">
+    <div class="content">
+      <h3>Jaringan Terdeteksi</h3>
+      <div class="wifi_list">
+        <table id="wifi_list">
+
+        </table>
+      </div>
+      <div class="card-grid">
+        <div class="card">
+          <form action="/wifiManager" method="POST">
+            <label for="SSID">SSID</label>
+            <input type="text" id="ssid" name="ssid" placeholder="Your SSID">
+            <label for="password">Password</label>
+            <input type="password" id="pass" name="pass" placeholder="Your Password">
+            <input type="checkbox" id="show" onclick="f()">
+            <span class="show">Show Password</span><br><br>
+            <input type ="submit" value ="Submit">
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const json = '{"ssid":["AlFA12AJfgadfdcvzcvdfvzdvzsdvsDvADvADSV","Aretha Artha","ASRWPD","namawifiapa","sdasda","adfasdf"],"rssi":[-77,-88,-88,-93, -80, -50], "encrypt":["o", "o", "l","l","l"]}';
+
+function updateWiFiList() {
+  function calculateSignalStrength(rssi) {
+    if (rssi >= -77) return "3";
+    if (rssi >= -88) return "2";
+    return "1";
+  }
+
+  function encryptionType(encrypt) {
+    return encrypt === "o" ? "open" : "locked";
+  }
+
+  var xhr = new XMLHttpRequest();
+  xhr.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      const data = JSON.parse(json);
+      var tableElement = document.getElementById('wifi_list');
+
+      // Kosongkan tabel sebelumnya
+      tableElement.innerHTML = '';
+
+      data.ssid.forEach((ssid, i) => {
+        var row = document.createElement('tr');
+        var ssidCell = document.createElement('td');
+        var rssiCell = document.createElement('td');
+
+        var link = document.createElement('a');
+        link.href = "#";
+        link.onclick = function() { c(link); }; // Gunakan fungsi anonim untuk meneruskan elemen link
+        link.textContent = ssid;
+        ssidCell.appendChild(link);
+
+        var signalStrengthValue = calculateSignalStrength(data.rssi[i]);
+        var enkripsi = encryptionType(data.encrypt[i]);
+        var imgSrc = `/img/network_wifi_${signalStrengthValue}${enkripsi === 'locked' ? '_locked' : ''}.png`;
+
+        var img = document.createElement('img');
+        img.src = imgSrc;
+        rssiCell.appendChild(img);
+
+        row.appendChild(ssidCell);
+        row.appendChild(rssiCell);
+        tableElement.appendChild(row);
+      });
+    }
+  };
+  xhr.open('GET', '/wifi_bar_signal.html', true);
+  xhr.send();
+}
+
+updateWiFiList();
+
+//Untuk Keperluan Form
+    function c(l) {
+        document.getElementById('ssid').value = l.textContent || l.innerText;
+        document.getElementById('pass').focus(); // Baris ini akan mengatur fokus ke elemen input password
+      }
+    function f() {var x = document.getElementById('pass');x.type==='password'?x.type='text':x.type='password';}
+  </script>
+</body>
+</html>

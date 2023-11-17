@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sinkronisasi Waktu</title>
+    <link rel="stylesheet" href="time_style.css" />
+    <!-- Sertakan CSS jika ada -->
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="navbar-extra">
+        <div class="hamburger-menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+
+      <a href="#" class="navbar-logo">ENCO<span>MOTION</span></a>
+
+      <div class="navbar-nav">
+        <a href="/">Beranda</a>
+        <a href="/wifiManager.html">Pengaturan <span>Konektivitas</span></a>
+        <a href="#help">Bantuan</a>
+      </div>
+
+      <div class="navbar-rtc">
+        <div class="dateBar">
+          <div id="hari">%HARI%</div>
+          <div id="tanggal">%TANGGAL%</div>
+        </div>
+        <div class="clockBar">
+          <span id="jam">%JAM%</span>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section start -->
+    <section class="hero">
+      <main class="content">
+        <h1>ENCO<span>MOTION</span></h1>
+        <p>Sinkronisasi Waktu</p>
+        <div class="sync-container">
+          <div class="ntp-sync">
+            <form action="/setNTPTime" method="get">
+              Zona Waktu: <input type="text" name="timezone" required /> <br />
+              <input type="submit" value="Sinkronisasi NTP" />
+            </form>
+          </div>
+          <div class="manual-sync">
+            <form action="/setManualTime" method="get">
+              Tanggal:
+              <input
+                type="date"
+                name="date"
+                required
+                oninvalid="this.setCustomValidity('Harap isi tanggal terlebih dahulu')"
+                oninput="this.setCustomValidity('')"
+              /><br />
+              Waktu:
+              <input
+                type="time"
+                name="time"
+                required
+                oninvalid="this.setCustomValidity('Harap isi waktu terlebih dahulu')"
+                oninput="this.setCustomValidity('')"
+              /><br />
+              <input type="submit" value="Sinkronisasi Manual" />
+            </form>
+          </div>
+        </div>
+      </main>
+    </section>
+    <!-- Hero Section end -->
+
+    <!-- My Javascript -->
+    <script src="/script.js"></script>
+    <script src="/ajax.js"></script>
+  </body>
+</html>

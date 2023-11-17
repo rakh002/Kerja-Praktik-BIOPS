@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Water Pressure Sensor</title>
+
+    <!-- My Style -->
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+
+  <body>
+    <header></header>
+    <!-- Navbar start -->
+    <nav class="navbar">
+      <div class="navbar-extra">
+        <div class="hamburger-menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+
+      <a href="#" class="navbar-logo">ENCO<span>MOTION</span></a>
+
+      <div class="navbar-nav">
+        <a href="/wifiManager.html">Pengaturan <span>Konektivitas</span></a>
+        <a href="/timeSync.html">Sinkronisasi <span>Waktu</span></a>
+        <a href="#help">Bantuan</a>
+      </div>
+
+      <div class="navbar-rtc">
+        <div class="dateBar">
+          <div id="hari">%HARI%</div>
+          <div id="tanggal">%TANGGAL%</div>
+        </div>
+        <div class="clockBar">
+          <span id="jam">%JAM%</span>
+        </div>
+      </div>
+    </nav>
+    <!-- Navbar end -->
+
+    <!-- Hero Section start -->
+    <section class="hero" id="home">
+      <main class="content">
+        <h1>ENCO<span>MOTION</span></h1>
+        <p>Pengukur Tekanan Air</p>
+        <div class="container-sensor">
+          <div class="grid-item item1">
+            <div class="tekanan">
+              Tekanan : <br /><span id="current">%CURRENT%</span>
+            </div>
+          </div>
+          <div class="grid-item item2">
+            <div class="tekanan">
+              Tekanan Sebelumnya : <br />
+              <span id="prev">%PREVIOUS%</span>
+            </div>
+          </div>
+          <div class="grid-item item3">
+            <div class="tekanan">
+              Tekanan Maksimal : <br /><span id="max">%MAXIMAL%</span>
+            </div>
+          </div>
+          <div class="grid-item item4">
+            <div class="tekanan">
+              Tekanan Minimal : <br /><span id="min">%MINIMAL%</span>
+            </div>
+          </div>
+        </div>
+      </main>
+    </section>
+    <!-- Hero Section end -->
+
+    
+
+    <!-- My Javascript -->
+    <script src="/script.js"></script>
+    <script src="/ajax.js"></script>
+  </body>
+</html>
