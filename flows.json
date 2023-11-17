@@ -1,0 +1,192 @@
+[
+    {
+        "id": "ed2a7f4ea5b90584",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "cf7ada296768aaac",
+        "type": "inject",
+        "z": "ed2a7f4ea5b90584",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "2023/7/28|10:10:10,15,23,12,14",
+        "payloadType": "str",
+        "x": 130,
+        "y": 580,
+        "wires": [
+            [
+                "406252765a865593",
+                "fdc2ed6dcf99f36c"
+            ]
+        ]
+    },
+    {
+        "id": "0fc6cb3e2b1bf739",
+        "type": "debug",
+        "z": "ed2a7f4ea5b90584",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": true,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "payload",
+        "statusType": "auto",
+        "x": 760,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "2a91d936db8851d4",
+        "type": "mqtt in",
+        "z": "ed2a7f4ea5b90584",
+        "name": "",
+        "topic": "Kerja-Praktik/Sensor",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "58d48bc5a78b8372",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 130,
+        "y": 180,
+        "wires": [
+            [
+                "69b5f61ed765620f"
+            ]
+        ]
+    },
+    {
+        "id": "406252765a865593",
+        "type": "json",
+        "z": "ed2a7f4ea5b90584",
+        "name": "",
+        "property": "payload",
+        "action": "obj",
+        "pretty": false,
+        "x": 270,
+        "y": 520,
+        "wires": [
+            [
+                "fa5b47205c8e5a74"
+            ]
+        ]
+    },
+    {
+        "id": "fa5b47205c8e5a74",
+        "type": "debug",
+        "z": "ed2a7f4ea5b90584",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 620,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "fdc2ed6dcf99f36c",
+        "type": "template",
+        "z": "ed2a7f4ea5b90584",
+        "name": "",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "json",
+        "syntax": "mustache",
+        "template": "{\n    \"current\": 3,\n    \"prev\": 3,\n    \"max\": 1201,\n    \"min\": 2\n}",
+        "output": "json",
+        "x": 500,
+        "y": 600,
+        "wires": [
+            [
+                "3fab9c600f02058b"
+            ]
+        ]
+    },
+    {
+        "id": "3fab9c600f02058b",
+        "type": "debug",
+        "z": "ed2a7f4ea5b90584",
+        "name": "debug 3",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 720,
+        "y": 600,
+        "wires": []
+    },
+    {
+        "id": "69b5f61ed765620f",
+        "type": "GSheet",
+        "z": "ed2a7f4ea5b90584",
+        "creds": "97122b4eb7005b00",
+        "method": "append",
+        "action": "",
+        "sheet": "1GMK3pX9odZrgMQkT6fIXBJsSKE_nzU1_bzFCtIpGG1g",
+        "cells": "A2:A100000",
+        "flatten": false,
+        "name": "Sheet",
+        "x": 550,
+        "y": 260,
+        "wires": [
+            [
+                "0fc6cb3e2b1bf739"
+            ]
+        ]
+    },
+    {
+        "id": "58d48bc5a78b8372",
+        "type": "mqtt-broker",
+        "name": "IIOT TF",
+        "broker": "iot.tf.itb.ac.id",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "97122b4eb7005b00",
+        "type": "gauth",
+        "name": "kerja-praktik@kerja-praktik-394223.iam.gserviceaccount.com"
+    }
+]
